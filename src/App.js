@@ -9,10 +9,11 @@ const XModal = () => {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState(null);
   const [formError, setFormError] = useState(false);
+  const modalRef = useRef();
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (!e.target.closest(".modal-content")) {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
         closeModal();
       }
     };
@@ -71,13 +72,13 @@ const XModal = () => {
   };
 
   return (
-    <>
-      <div className={`modal ${isOpen ? "open" : ""}`}>
-        <h2>User Details Modal</h2>
-        <button className="open-form-button" onClick={openModal}>
-          Open Form
-        </button>
-        <div className="modal-content">
+    <div className="modal">
+      <h2>User Details Modal</h2>
+      <button className="open-form-button" onClick={openModal}>
+        Open Form
+      </button>
+      {isOpen && (
+        <div className="modal-content" ref={modalRef}>
           <h2>Fill Details</h2>
           <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
             <label htmlFor="username">Username:</label>
@@ -115,17 +116,15 @@ const XModal = () => {
               value={dob}
               onChange={(e) => setDob(e.target.value)}
             />
-            {error && error.includes("dob") && (
-              <p className="error">{error}</p>
-            )}
+            {error && error.includes("dob") && <p className="error">{error}</p>}
 
             <button type="submit" className="submit-button">
               Submit
             </button>
           </form>
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 
