@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import ReactDOM from "react-dom";
 import "./App.css";
 
 const XModal = () => {
@@ -72,59 +73,67 @@ const XModal = () => {
   };
 
   return (
-    <div className="modal">
-      <h2>User Details Modal</h2>
-      <button className="open-form-button" onClick={openModal}>
-        Open Form
-      </button>
-      {isOpen && (
-        <div className="modal-content" ref={modalRef}>
-          <h2>Fill Details</h2>
-          <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {error && error.includes("email") && (
-              <p className="error">{error}</p>
-            )}
-            <label htmlFor="phone">Phone Number:</label>
-            <input
-              type="tel"
-              id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-            {error && error.includes("phone") && (
-              <p className="error">{error}</p>
-            )}
-            <label htmlFor="dob">Date of Birth:</label>
-            <input
-              type="date"
-              id="dob"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-            />
-            {error && error.includes("dob") && <p className="error">{error}</p>}
+    <>
+      {isOpen &&
+        ReactDOM.createPortal(
+          <div className="modal">
+            <div className="modal-content" ref={modalRef}>
+              <h2>Fill Details</h2>
+              <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {error && error.includes("email") && (
+                  <p className="error">{error}</p>
+                )}
+                <label htmlFor="phone">Phone Number:</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+                {error && error.includes("phone") && (
+                  <p className="error">{error}</p>
+                )}
+                <label htmlFor="dob">Date of Birth:</label>
+                <input
+                  type="date"
+                  id="dob"
+                  value={dob}
+                  onChange={(e) => setDob(e.target.value)}
+                />
+                {error && error.includes("dob") && (
+                  <p className="error">{error}</p>
+                )}
 
-            <button type="submit" className="submit-button">
-              Submit
-            </button>
-          </form>
-        </div>
+                <button type="submit" className="submit-button">
+                  Submit
+                </button>
+              </form>
+            </div>
+            <div className="modal-backdrop" onClick={closeModal}></div>
+          </div>,
+          document.body
+        )}
+      {!isOpen && (
+        <button className="open-form-button" onClick={openModal}>
+          Open Form
+        </button>
       )}
-    </div>
+    </>
   );
 };
 
