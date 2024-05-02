@@ -72,7 +72,7 @@ const XModal = () => {
   };
 
   return (
-    <div className="">
+    <div className="modal-top">
       <h2>User Details Modal</h2>
       <button className="open-form-button" onClick={openModal}>
         Open Form
