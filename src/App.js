@@ -13,7 +13,7 @@ const XModal = () => {
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (!modalRef.current.contains(e.target)) {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
         closeModal();
       }
     };
@@ -72,7 +72,7 @@ const XModal = () => {
   };
 
   return (
-    <div className={`modal ${isOpen ? "modal-open" : ""}`}>
+    <div className="modal">
       <h2>User Details Modal</h2>
       <button className="open-form-button" onClick={openModal}>
         Open Form
