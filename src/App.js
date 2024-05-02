@@ -72,13 +72,13 @@ const XModal = () => {
   };
 
   return (
-    <div className="modal">
+    <div className="">
       <h2>User Details Modal</h2>
       <button className="open-form-button" onClick={openModal}>
         Open Form
       </button>
       {isOpen && (
-        <div className="modal-content" ref={modalRef}>
+        <div className="modal modal-content" ref={modalRef}>
           <h2>Fill Details</h2>
           <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
             <label htmlFor="username">Username:</label>
