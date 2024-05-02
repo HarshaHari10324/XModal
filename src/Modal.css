@@ -1,4 +1,4 @@
-.modal {
+.Xmodal {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,9 +10,18 @@
   flex-direction: column;
 }
 
-.modal-open {
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .modal-content {
   display: flex;
   flex-direction: column;
@@ -27,23 +36,17 @@
   border-radius: 8px;
 }
 
-.open-form-button {
-  background-color: #008cba;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="tel"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-.error {
-  color: red;
-  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .submit-button {
@@ -56,19 +59,5 @@
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="date"],
-input[type="tel"] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  border-radius: 5%;
 }
